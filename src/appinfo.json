@@ -1,0 +1,10 @@
+{
+  "id": "com.hami.app",
+  "version": "1.0.0",
+  "vendor": "yeh",
+  "type": "web",
+  "main": "index.html",
+  "title": "Hami-WebOS",
+  "icon": "icon.png",
+  "largeIcon": "largeIcon.png"
+}
