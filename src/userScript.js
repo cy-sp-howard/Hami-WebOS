@@ -1,4 +1,5 @@
-import webos from './webOSTV'
+import './webOSTV'
+import 'overwrite.css'
 
 function main() {
   const originAlert = window.alert
@@ -14,12 +15,18 @@ function main() {
   addEventListener('keydown', function (evt) {
     const code = evt.keyCode || evt.which
     if (code !== 461) return
-    if (document.fullscreenElement) return player.fullscreen.toggle()
+    if (document.fullscreenElement) {
+      player.fullscreen.toggle()
+      delaySetFullScreenPID = setTimeout(() => {
+        if (document.fullscreenElement) return
+        player.fullscreen.toggle()
+      }, 5000)
+    }
+    webOS.platformBack()
   })
   addEventListener(
     'playing',
     (evt) => {
-      if (document.fullscreenElement) return
       evt.target.addEventListener(
         'pause',
         () => {
@@ -27,6 +34,7 @@ function main() {
         },
         { once: true }
       )
+      if (document.fullscreenElement) return
       delaySetFullScreenPID = setTimeout(() => {
         clearTimeout(delaySetFullScreenPID)
         player.fullscreen.toggle()

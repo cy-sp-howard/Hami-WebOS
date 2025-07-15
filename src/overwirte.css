@@ -1,0 +1,14 @@
+footer {
+  display: none;
+}
+.player_title > .pic {
+  width: 100px;
+  height: 100px;
+}
+.player_title > .com > h3 {
+  line-height: 100px;
+  font-size: 6rem;
+}
+.player_title > .com > p {
+  display: none;
+}
