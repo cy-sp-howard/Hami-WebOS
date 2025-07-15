@@ -3,14 +3,17 @@
   "version": "0.0.0",
   "description": "Ad-free YouTube app for webOS",
   "scripts": {
-    "package": "ares-package -n src"
+    "build": "vite build",
+    "package": "vite build && ares-package -n dist",
+    "prettier": "prettier . --write"
   },
   "repository": "github:xxx/xxxx-xxx",
-  "dependencies": {
-  },
   "devDependencies": {
+    "prettier": "^3.6.2",
+    "vite": "^7.0.4"
   },
   "engines": {
     "node": ">=22"
-  }
+  },
+  "type": "module"
 }
