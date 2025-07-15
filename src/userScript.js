@@ -1,5 +1,5 @@
 import './webOSTV'
-import 'overwrite.css'
+import './overwrite.css'
 
 function main() {
   const originAlert = window.alert
