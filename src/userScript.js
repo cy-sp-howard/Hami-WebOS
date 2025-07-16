@@ -2,9 +2,12 @@ import './webOSTV'
 import './overwrite.css'
 import DB from './db'
 
+const userDB = new DB('userDB')
+
 function main() {
   alertOverwrite()
   eventHandler()
+  window.getLastPlayingChannel = getLastPlayingChannel
   window.dispatchEvent(new Event('userScriptLoaded'))
 }
 function alertOverwrite() {
@@ -58,8 +61,5 @@ function setLastPlayingChannel(id) {
 function getLastPlayingChannel() {
   return userDB.simpleRead('lastPlayingChannel')
 }
-
-const userDB = new DB('userDB')
-window.getLastPlayingChannel = getLastPlayingChannel
 
 main()
