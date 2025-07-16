@@ -10,7 +10,8 @@
   "repository": "github:cy-sp-howard/Hami-WebOS",
   "devDependencies": {
     "prettier": "^3.6.2",
-    "vite": "^7.0.4"
+    "vite": "^7.0.4",
+    "vite-plugin-css-injected-by-js": "^3.5.2"
   },
   "engines": {
     "node": ">=22"

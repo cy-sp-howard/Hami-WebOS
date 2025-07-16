@@ -5,6 +5,7 @@ import DB from './db'
 function main() {
   alertOverwrite()
   eventHandler()
+  window.dispatchEvent(new Event('userScriptLoaded'))
 }
 function alertOverwrite() {
   const originAlert = window.alert
