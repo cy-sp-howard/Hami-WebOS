@@ -58,6 +58,6 @@ function getLastPlayingChannel() {
   return userDB.simpleRead('lastPlayingChannel')
 }
 
-main()
 window.userDB = new DB('userDB')
 window.getLastPlayingChannel = getLastPlayingChannel
+main()
