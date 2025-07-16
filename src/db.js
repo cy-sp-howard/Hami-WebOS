@@ -1,3 +1,4 @@
+import './webOSTV'
 export default class DB {
   constructor(id) {
     this.id = id
