@@ -12,3 +12,6 @@ footer {
 .player_title > .com > p {
   display: none;
 }
+.cookieInfo {
+  display: none;
+}

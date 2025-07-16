@@ -4,7 +4,7 @@
   "vendor": "yeh",
   "type": "web",
   "main": "index.html",
-  "title": "Hami-WebOS",
+  "title": "HamiVideo",
   "icon": "icon.png",
   "largeIcon": "largeIcon.png",
   "disableBackHistoryAPI": true

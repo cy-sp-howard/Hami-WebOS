@@ -1,9 +1,13 @@
 import './webOSTV'
 import './overwrite.css'
+import DB from './db'
 
 function main() {
+  alertOverwrite()
+  eventHandler()
+}
+function alertOverwrite() {
   const originAlert = window.alert
-  let delaySetFullScreenPID = -1
   window.alert = (text) => {
     if (!isLogin) {
       loginCheck(true)
@@ -12,6 +16,9 @@ function main() {
     }
     originAlert(text)
   }
+}
+function eventHandler() {
+  let delaySetFullScreenPID = -1
   addEventListener('keydown', function (evt) {
     const code = evt.keyCode || evt.which
     if (code !== 461) return
@@ -34,6 +41,7 @@ function main() {
         },
         { once: true }
       )
+      setLastPlayingChannel(myPlayer.contentID)
       if (document.fullscreenElement) return
       delaySetFullScreenPID = setTimeout(() => {
         clearTimeout(delaySetFullScreenPID)
@@ -43,5 +51,13 @@ function main() {
     { capture: true }
   )
 }
+function setLastPlayingChannel(id) {
+  userDB.simpleWrite('lastPlayingChannel', id)
+}
+function getLastPlayingChannel() {
+  return userDB.simpleRead('lastPlayingChannel')
+}
 
 main()
+window.userDB = new DB('userDB')
+window.getLastPlayingChannel = getLastPlayingChannel
