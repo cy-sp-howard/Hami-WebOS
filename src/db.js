@@ -1,4 +1,4 @@
-export class DB {
+export default class DB {
   constructor(id) {
     this.id = id
     this.createdDB = new Promise((resolve, reject) => {
