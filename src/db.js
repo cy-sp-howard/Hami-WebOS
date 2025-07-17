@@ -1,13 +1,14 @@
 import './webOSTV'
 export default class DB {
   constructor(id) {
-    this.id = id
+    const owner = webOS.fetchAppId()
+    this.id = `${owner}:${id}`
     this.createdDB = new Promise((resolve, reject) => {
       webOS.service.request('luna://com.palm.db', {
         method: 'putKind',
         parameters: {
           id: this.id,
-          owner: webOS.fetchAppId(),
+          owner,
           private: true
         },
         onSuccess: (evt) => resolve(evt),
