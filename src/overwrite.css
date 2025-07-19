@@ -1,6 +1,9 @@
 footer {
   display: none;
 }
+header a[title='真心推薦'] {
+  display: none;
+}
 .player_title > .pic {
   width: 100px;
   height: 100px;
@@ -14,4 +17,55 @@ footer {
 }
 .cookieInfo {
   display: none;
+}
+
+#user-script-msg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  animation-name: fade;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+}
+#user-script-msg::before {
+  content: attr(data-msg);
+  background: #000c;
+  font-size: 4rem;
+  line-height: 1.2;
+  color: white;
+  padding: 0.5rem 1rem;
+  max-width: 100vw;
+  word-break: break-all;
+  overflow: hidden;
+}
+body.fullscreen {
+  overflow: hidden;
+}
+body.fullscreen .fullscreen-target-parent > *:first-child {
+  left: 0;
+  top: 0;
+  z-index: 99999;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

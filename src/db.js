@@ -20,7 +20,8 @@ export default class DB {
   }
   getSimpleData() {
     const flagName = 'isSimpleRow'
-    return this.find({ where: [{ prop: flagName, op: '=', val: true }] }).then(({ results }) => {
+    return this.find().then(({ results }) => {
+      results = results.filter((i) => !isNaN(i[flagName]))
       if (!results.length) {
         return this.put([{ [flagName]: true }]).then(({ results: putResults }) => {
           return this.get(putResults.map((i) => i.id)).then(({ results }) => results[0])
