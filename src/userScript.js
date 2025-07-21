@@ -33,6 +33,9 @@ function buyRedirectOverwrite() {
 }
 function eventHandler() {
   let delaySetFullScreenPID = -1
+  addEventListener('wheel', (evt) => {
+    document.documentElement.scrollTop += evt.deltaY
+  })
   document.addEventListener(
     'webOSRelaunch',
     () => {
