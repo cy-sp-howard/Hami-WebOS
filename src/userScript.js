@@ -16,8 +16,8 @@ function alertOverwrite() {
   const originAlert = window.alert
   window.alert = (text) => {
     if (!isLogin) {
-      loginCheck(true)
-      loginBy('otp')
+      loginCheck && loginCheck(true)
+      loginBy && loginBy('otp')
       return
     }
     originAlert(text)
@@ -25,6 +25,7 @@ function alertOverwrite() {
 }
 function buyRedirectOverwrite() {
   addEventListener('load', () => {
+    if (!myPlayer) return
     myPlayer.callBuy = () => {
       launch('OTT_LIVE_0000001508')
     }
@@ -62,7 +63,7 @@ function eventHandler() {
         fullscreenManager.toggle()
         break
       case 13:
-        player.elements.buttons.play[0].click()
+        player && player.elements.buttons.play[0].click()
         break
     }
   })
@@ -76,7 +77,7 @@ function eventHandler() {
         },
         { once: true }
       )
-      setLastPlayingChannel(myPlayer.contentID)
+      myPlayer && setLastPlayingChannel(myPlayer.contentID)
       if (document.fullscreenElement) return
       delaySetFullScreenPID = setTimeout(() => {
         clearTimeout(delaySetFullScreenPID)
@@ -108,6 +109,7 @@ function print(text) {
   console.log(`%c${text}`, 'color:PeachPuff;')
 }
 function toggleQuality() {
+  if (!player) return
   if (player.elements.controls.computedStyleMap().get('opacity') === 0) {
     player.toggleControls()
   }
@@ -119,6 +121,7 @@ function toggleQuality() {
   showMessage(`畫質：${target.textContent}`)
 }
 function showMessage(msg) {
+  if (!player) return
   const id = 'user-script-msg'
   const el = player.elements.container.querySelector(`#${id}`) || document.createElement('div')
   el.remove()

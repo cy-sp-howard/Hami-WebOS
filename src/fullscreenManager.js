@@ -4,6 +4,7 @@ export default new (class {
     this.fullscreenTargetParentClassName = 'fullscreen-target-parent'
   }
   get status() {
+    if (!player) return document.fullscreenElement
     return (
       document.fullscreenElement ||
       (document.body.classList.contains(this.fullscreenClassName) &&
@@ -16,7 +17,7 @@ export default new (class {
     this.status ? this.end() : this.start()
   }
   start() {
-    if (this.status) return Promise.resolve()
+    if (this.status || !player) return Promise.resolve()
     return this.end().then(() => {
       return player.elements.container.requestFullscreen().catch(() => {
         document.body.classList.add(this.fullscreenClassName)
@@ -25,6 +26,7 @@ export default new (class {
     })
   }
   end() {
+    if (!player) return Promise.resolve()
     document.body.classList.remove(this.fullscreenClassName)
     player.elements.container.parentElement.classList.remove(this.fullscreenTargetParentClassName)
     return Promise.resolve(document.exitFullscreen().catch(() => {}))
