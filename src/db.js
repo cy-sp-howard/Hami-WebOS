@@ -1,10 +1,10 @@
-import './webOSTV'
+import { request, fetchAppId } from './webOSTVAPI'
 export default class DB {
   constructor(id) {
-    const owner = webOS.fetchAppId()
+    const owner = fetchAppId()
     this.id = `${owner}:${id}`
     this.createdDB = new Promise((resolve, reject) => {
-      webOS.service.request('luna://com.palm.db', {
+      request('luna://com.palm.db', {
         method: 'putKind',
         parameters: {
           id: this.id,
@@ -44,7 +44,7 @@ export default class DB {
   get(ids) {
     return new Promise((resolve, reject) => {
       this.createdDB.then(() => {
-        webOS.service.request('luna://com.palm.db', {
+        request('luna://com.palm.db', {
           method: 'get',
           parameters: {
             ids
@@ -58,7 +58,7 @@ export default class DB {
   put(ary) {
     return new Promise((resolve, reject) => {
       this.createdDB.then(() => {
-        webOS.service.request('luna://com.palm.db', {
+        request('luna://com.palm.db', {
           method: 'put',
           parameters: {
             objects: ary.map((i) => Object.assign({}, i, { _kind: this.id }))
@@ -80,7 +80,7 @@ export default class DB {
     }
     return new Promise((resolve, reject) => {
       this.createdDB.then(() => {
-        webOS.service.request('luna://com.palm.db', {
+        request('luna://com.palm.db', {
           method: 'merge',
           parameters,
           onSuccess: (evt) => resolve(evt),
@@ -92,7 +92,7 @@ export default class DB {
   find(query) {
     return new Promise((resolve, reject) => {
       this.createdDB.then(() => {
-        webOS.service.request('luna://com.palm.db', {
+        request('luna://com.palm.db', {
           method: 'find',
           parameters: {
             query: Object.assign({}, query, { from: this.id })

@@ -1,4 +1,4 @@
-import './webOSTV'
+import { platformBack } from './webOSTVAPI'
 import './overwrite.css'
 import DB from './db'
 import fullscreenManager from './fullscreenManager'
@@ -53,7 +53,7 @@ function eventHandler() {
           }, 5000)
           break
         }
-        webOS.platformBack()
+        platformBack()
         break
       case 37:
         toggleQuality()

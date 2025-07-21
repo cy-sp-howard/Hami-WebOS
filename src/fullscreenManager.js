@@ -1,6 +1,8 @@
 export default new (class {
-  fullscreenClassName = 'fullscreen'
-  fullscreenTargetParentClassName = 'fullscreen-target-parent'
+  constructor() {
+    this.fullscreenClassName = 'fullscreen'
+    this.fullscreenTargetParentClassName = 'fullscreen-target-parent'
+  }
   get status() {
     return (
       document.fullscreenElement ||
