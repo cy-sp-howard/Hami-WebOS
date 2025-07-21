@@ -52,7 +52,8 @@ function eventHandler() {
         if (fullscreenManager.status) {
           fullscreenManager.end()
           delaySetFullScreenPID = setTimeout(() => {
-            if (fullscreenManager.status) return
+            const isPlaying = player && player.playing
+            if (fullscreenManager.status || !isPlaying) return
             fullscreenManager.start()
           }, 5000)
           break
@@ -82,10 +83,12 @@ function eventHandler() {
       )
       myPlayer && setLastPlayingChannel(myPlayer.contentID)
       if (document.fullscreenElement) return
+      clearTimeout(delaySetFullScreenPID)
       delaySetFullScreenPID = setTimeout(() => {
         clearTimeout(delaySetFullScreenPID)
         print('set fullscreen')
-        fullscreenManager.start()
+        const isPlaying = player && player.playing
+        isPlaying && fullscreenManager.start()
       }, 5000)
     },
     { capture: true }
