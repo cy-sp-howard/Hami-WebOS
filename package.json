@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "description": "Hami Video unofficial WebOS version",
   "scripts": {
-    "build": "vite build",
     "package": "vite build && ares-package -n dist",
+    "package:autostart": "vite build ./autostart --emptyOutDir --outDir ../dist && ares-package -n dist",
     "prettier": "prettier . --write"
   },
   "repository": "github:cy-sp-howard/Hami-WebOS",
